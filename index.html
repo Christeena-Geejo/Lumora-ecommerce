@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumora — Live Beautifully. Shop Effortlessly.</title>
+  <link rel="stylesheet" href="style.css?v=2.6">
+  <style>
+    .chat-messages .chat-msg {
+      max-width: 65% !important;
+      width: fit-content !important;
+      padding: 10px 14px !important;
+      border-radius: 14px !important;
+      font-size: 13px !important;
+      line-height: 1.4 !important;
+      overflow-wrap: break-word !important;
+      word-wrap: break-word !important;
+      word-break: break-all !important;
+      white-space: pre-wrap !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <div class="header-logo-row">
+      <a href="#/" class="logo">LUMORA</a>
+    </div>
+    
+    <!-- Amazon-like search bar themed in Forest Green -->
+    <div class="search-bar-container">
+      <select id="search-category-select">
+        <option value="all">All Departments</option>
+        <option value="Women">Women</option>
+        <option value="Men">Men</option>
+        <option value="Home & Living">Home & Living</option>
+        <option value="Beauty">Beauty</option>
+        <option value="Accessories">Accessories</option>
+      </select>
+      <input type="text" id="global-search-input" placeholder="Search Lumora...">
+      <button id="global-search-btn" onclick="executeGlobalSearch()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </div>
+
+    <nav>
+      <a href="#/" class="nav-link" id="nav-link-home">Home</a>
+      <a href="#/search?q=" class="nav-link" id="nav-link-shop">Shop</a>
+      <a href="#/orders" class="nav-link" id="nav-link-orders">Track Orders</a>
+      <a href="#/wallet" class="nav-link" id="nav-link-wallet">My Wallet</a>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- Wishlist Icon -->
+      <a href="#/wishlist" class="action-icon" title="Wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="badge-count" id="wishlist-badge">0</span>
+      </a>
+      <!-- Profile Action -->
+      <a href="#/account" class="action-icon" title="Profile" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none;">
+        <span id="header-user-status-container"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </a>
+      <!-- Cart Icon -->
+      <a href="#/cart" class="action-icon" title="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="badge-count" id="cart-badge">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page View Containers -->
+  <main id="main-content-container">
+
+    <!-- 1. HOME VIEW -->
+    <div id="view-home" class="page-view">
+      <!-- Hero Banner -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <span class="hero-tag">New Season Collection</span>
+            <h1 class="hero-title">Live Beautifully.<br>Shop <span>Effortlessly.</span></h1>
+            <p class="hero-desc">Curated styles, quality you love, delivered straight to your door.</p>
+            
+            <a href="#/search?q=" class="btn-primary">
+              Shop Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+
+            <div class="hero-badges">
+              <div class="hero-badge-item">
+                <div class="hero-badge-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+                <div class="hero-badge-text">
+                  <h4>Free Shipping</h4>
+                  <p>On orders over ₹50</p>
+                </div>
+              </div>
+
+              <div class="hero-badge-item">
+                <div class="hero-badge-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </div>
+                <div class="hero-badge-text">
+                  <h4>Secure Payment</h4>
+                  <p>100% protected</p>
+                </div>
+              </div>
+
+              <div class="hero-badge-item">
+                <div class="hero-badge-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                </div>
+                <div class="hero-badge-text">
+                  <h4>Easy Returns</h4>
+                  <p>30-day return</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side Visuals -->
+          <div class="hero-visuals">
+            <div class="hero-backdrop-circle"></div>
+            <div class="hero-image-frame">
+              <img src="assets/hero_model.png" alt="Lumora Model Sage Green Dress">
+            </div>
+
+            <!-- Floating Featured Card -->
+            <div class="featured-card" id="featured-handbag-card">
+              <img src="assets/handbag.png" alt="Luxe Handbag" class="featured-card-img">
+              <h4 class="featured-card-title">Luxe Handbag</h4>
+              <p class="featured-card-price">₹129.00</p>
+              <div class="featured-card-actions">
+                <button class="btn-add-featured" onclick="addHandbagToCart()">Add to Cart</button>
+                <button class="btn-action-featured" onclick="toggleWishlist(0)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories Section -->
+      <section class="categories">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Shop by Category</h2>
+          </div>
+          <div class="categories-container">
+            <div class="categories-grid">
+              <a href="#/search?category=Women" class="category-card">
+                <div class="category-img-frame"><img src="assets/cat_women.png" alt="Women"></div>
+                <h4 class="category-name">Women</h4>
+                <span class="category-count">120+ items</span>
+              </a>
+              <a href="#/search?category=Men" class="category-card">
+                <div class="category-img-frame"><img src="assets/cat_men.png" alt="Men"></div>
+                <h4 class="category-name">Men</h4>
+                <span class="category-count">98+ items</span>
+              </a>
+              <a href="#/search?category=Home %26 Living" class="category-card">
+                <div class="category-img-frame"><img src="assets/cat_home.png" alt="Home"></div>
+                <h4 class="category-name">Home & Living</h4>
+                <span class="category-count">150+ items</span>
+              </a>
+              <a href="#/search?category=Beauty" class="category-card">
+                <div class="category-img-frame"><img src="assets/cat_beauty.png" alt="Beauty"></div>
+                <h4 class="category-name">Beauty</h4>
+                <span class="category-count">80+ items</span>
+              </a>
+              <a href="#/search?category=Accessories" class="category-card">
+                <div class="category-img-frame"><img src="assets/cat_accessories.png" alt="Accessories"></div>
+                <h4 class="category-name">Accessories</h4>
+                <span class="category-count">70+ items</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Promo Deals -->
+      <section class="promo">
+        <div class="container">
+          <div class="promo-banner">
+            <div class="promo-grid">
+              <div class="promo-content">
+                <span class="promo-tag">Limited Time Offer</span>
+                <h2 class="promo-title">Spring Sale is Live!</h2>
+                <p style="color: #c9d8d4; margin-bottom: 24px; font-size: 14px;">Enjoy up to 40% off on selected handcrafted items. Apply coupon **SPRING40** at checkout.</p>
+                <a href="#/search?q=" class="btn-secondary">
+                  Explore Deals
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+              <div class="promo-visuals">
+                <img src="assets/promo_flatlay.png" alt="Spring Sale Flatlay" class="promo-flatlay-img">
+                <div class="promo-badge">
+                  <span>Up to</span>
+                  <h3>40%</h3>
+                  <span>Off</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- New Arrivals Grid -->
+      <section class="new-arrivals">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">New Arrivals</h2>
+            <a href="#/search?sort=newest" class="browse-link">View all</a>
+          </div>
+          <div class="products-grid" id="home-new-arrivals-grid">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 2. SEARCH & LISTING VIEW -->
+    <div id="view-search" class="page-view" style="display:none;">
+      <div class="container search-layout">
+        <!-- Sidebar filters -->
+        <aside class="search-sidebar">
+          <h3>Filters</h3>
+          
+          <div class="filter-section">
+            <h4>Departments</h4>
+            <ul class="filter-links-list">
+              <li><a href="#/search?category=all" id="filter-cat-all" class="active">All Departments</a></li>
+              <li><a href="#/search?category=Women" id="filter-cat-Women">Women</a></li>
+              <li><a href="#/search?category=Men" id="filter-cat-Men">Men</a></li>
+              <li><a href="#/search?category=Home %26 Living" id="filter-cat-Home">Home & Living</a></li>
+              <li><a href="#/search?category=Beauty" id="filter-cat-Beauty">Beauty</a></li>
+              <li><a href="#/search?category=Accessories" id="filter-cat-Accessories">Accessories</a></li>
+            </ul>
+          </div>
+
+          <div class="filter-section">
+            <h4>Price Range</h4>
+            <div class="price-inputs">
+              <input type="number" id="filter-price-min" placeholder="Min" min="0">
+              <span class="price-sep">to</span>
+              <input type="number" id="filter-price-max" placeholder="Max" min="0">
+              <button onclick="applyFilters()" class="btn-filter-apply">Go</button>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <h4>Customer Rating</h4>
+            <div class="rating-filter-list">
+              <button onclick="setRatingFilter(4)" class="rating-filter-item">4★ & Up</button>
+              <button onclick="setRatingFilter(3)" class="rating-filter-item">3★ & Up</button>
+              <button onclick="setRatingFilter(0)" class="rating-filter-item">Clear Rating Filter</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Search Results Panel -->
+        <div class="search-results-main">
+          <div class="results-header">
+            <span class="results-count" id="search-results-count">Showing results...</span>
+            <div class="sorting-wrapper">
+              <label for="search-sort-select">Sort by:</label>
+              <select id="search-sort-select" onchange="applySort()">
+                <option value="featured">Featured</option>
+                <option value="newest">Newest Arrivals</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Avg. Customer Review</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="products-grid" id="search-results-grid">
+            <!-- Rendered by js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PRODUCT DETAIL VIEW -->
+    <div id="view-product" class="page-view" style="display:none;">
+      <div class="container product-detail-layout" id="product-detail-container">
+        <!-- Rendered dynamically by js (Buy Box column + Description Column) -->
+      </div>
+    </div>
+
+    <!-- 4. DEDICATED CART VIEW -->
+    <div id="view-cart" class="page-view" style="display:none;">
+      <div class="container cart-page-layout">
+        <div class="cart-items-main">
+          <h2 class="cart-page-title">Shopping Cart</h2>
+          <div id="cart-page-items-list">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+        
+        <aside class="cart-summary-sidebar">
+          <div class="cart-summary-box">
+            <h3 class="summary-box-title">Order Summary</h3>
+            <div class="coupon-section">
+              <input type="text" id="cart-coupon-input" placeholder="Promo code (SPRING40)">
+              <button onclick="applyCartPromoCode()">Apply</button>
+            </div>
+            <div id="cart-coupon-message" class="coupon-message-alert"></div>
+            
+            <div class="summary-lines-container">
+              <div class="summary-line">
+                <span>Subtotal (<span id="cart-page-summary-qty">0</span> items)</span>
+                <span id="cart-page-subtotal">₹0.00</span>
+              </div>
+              <div class="summary-line" id="cart-page-discount-row" style="display:none;">
+                <span>Discount (40% Off)</span>
+                <span id="cart-page-discount" style="color: var(--color-secondary); font-weight:600;">-₹0.00</span>
+              </div>
+              <div class="summary-line">
+                <span>Shipping</span>
+                <span id="cart-page-shipping">Free</span>
+              </div>
+              <div class="summary-line total-divider">
+                <span>Grand Total</span>
+                <span id="cart-page-total" style="font-size:20px; font-weight:600; color:var(--color-primary);">₹0.00</span>
+              </div>
+            </div>
+
+            <a href="#/checkout?step=shipping" class="btn-checkout-link">Proceed to Checkout</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- 5. MULTI-STEP CHECKOUT VIEW -->
+    <div id="view-checkout" class="page-view" style="display:none;">
+      <div class="container checkout-wizard-layout">
+        <!-- Checkout Steps Nav -->
+        <div class="checkout-steps-nav">
+          <div class="step-nav-item active" id="step-nav-shipping">1. Shipping</div>
+          <div class="step-nav-line"></div>
+          <div class="step-nav-item" id="step-nav-payment">2. Payment</div>
+          <div class="step-nav-line"></div>
+          <div class="step-nav-item" id="step-nav-review">3. Review & Order</div>
+        </div>
+
+        <div class="checkout-wizard-columns">
+          <div class="checkout-form-main" id="checkout-step-container">
+            <!-- Step contents injected here -->
+          </div>
+
+          <aside class="checkout-summary-sidebar">
+            <div class="cart-summary-box">
+              <h3>Order Summary</h3>
+              <div class="summary-lines-container" style="margin-top:16px;">
+                <div class="summary-line">
+                  <span>Items:</span>
+                  <span id="checkout-summary-subtotal">₹0.00</span>
+                </div>
+                <div class="summary-line" id="checkout-summary-discount-row" style="display:none;">
+                  <span>Discount:</span>
+                  <span id="checkout-summary-discount" style="color: var(--color-secondary); font-weight:600;">-₹0.00</span>
+                </div>
+                <div class="summary-line">
+                  <span>Shipping & Handling:</span>
+                  <span id="checkout-summary-shipping">₹0.00</span>
+                </div>
+                <div class="summary-line total-divider">
+                  <span>Order Total:</span>
+                  <span id="checkout-summary-total">₹0.00</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. ORDER CONFIRMATION VIEW -->
+    <div id="view-confirmation" class="page-view" style="display:none;">
+      <div class="container confirmation-layout">
+        <div class="confirmation-card">
+          <div class="check-icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <h2>Thank You! Your order has been placed.</h2>
+          <p class="order-id-display">Order Number: <span id="confirm-order-id">#10243</span></p>
+          <p class="delivery-estimate-display">Estimated delivery: Tuesday, June 23</p>
+          <p style="color:var(--color-text-muted); font-size:14px; margin-bottom: 32px;">A confirmation email has been dispatched via Celery tasks. You can monitor progress on the dashboard.</p>
+          
+          <div class="confirmation-actions">
+            <a href="#/orders" class="btn-primary">Track Your Order</a>
+            <a href="#/" class="btn-outline">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. ORDERS HISTORY & TRACKING VIEW -->
+    <div id="view-orders" class="page-view" style="display:none;">
+      <div class="container orders-dashboard-layout">
+        <h2>Your Orders</h2>
+        <div class="orders-list-wrapper" id="orders-dashboard-list">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. WALLET VIEW -->
+    <div id="view-wallet" class="page-view" style="display:none;">
+      <div class="container wallet-dashboard-layout">
+        <div class="wallet-grid">
+          <!-- Left side: Wallet Info -->
+          <div class="wallet-balance-card">
+            <h3>My Wallet</h3>
+            <div class="wallet-amount-badge">
+              <span class="wallet-currency">INR</span>
+              <span class="wallet-val" id="wallet-balance-display">₹0.00</span>
+            </div>
+            
+            <div class="add-funds-box">
+              <h4>Load Funds</h4>
+              <div class="funds-input-row">
+                <input type="number" id="wallet-add-amount" placeholder="Amount (₹)" min="1">
+                <button onclick="addWalletFunds()">Add Funds</button>
+              </div>
+              <p style="font-size:11px; color:var(--color-text-muted); margin-top:8px;">Load balance using mock payment gateway validation.</p>
+            </div>
+          </div>
+
+          <!-- Right side: Gift Cards & Saved Payment Options -->
+          <div class="profile-settings-card">
+            <h3>Redeem Gift Card or Promo</h3>
+            <p style="font-size:12px; color:var(--color-text-muted); margin-bottom: 16px;">Redeem a mock gift card code to instantly load funds into your wallet balance.</p>
+            <div class="add-funds-box" style="padding:0; background:none; border:none; box-shadow:none;">
+              <div class="funds-input-row">
+                <input type="text" id="wallet-gift-code" placeholder="Enter Gift Code (e.g. LUMORAGIFT)">
+                <button onclick="redeemGiftCard()">Redeem</button>
+              </div>
+              <p id="gift-card-message" style="font-size:12px; margin-top:8px; font-weight:600; min-height:16px;"></p>
+            </div>
+            
+            <div style="margin-top:20px; border-top:1px solid var(--color-border); padding-top:12px;">
+              <h4>Saved Payment Options</h4>
+              <p style="font-size:11px; color:var(--color-text-muted); margin-top:4px;">No credit/debit cards linked. You can select Cash on Delivery or use your Lumora Wallet balance at checkout.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wallet Transactions Log -->
+        <div class="wallet-transactions-section">
+          <h3>Wallet Transactions</h3>
+          <table class="transactions-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Reason</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody id="wallet-transactions-list">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. YOUR ACCOUNT VIEW -->
+    <div id="view-account" class="page-view" style="display:none;">
+      <div class="container account-dashboard-layout">
+        <h2 style="font-family:var(--font-heading); font-size:36px; margin-bottom:8px; color:var(--color-primary);">Your Account</h2>
+        <p style="color:var(--color-text-muted); margin-bottom:32px;">Manage your orders, wallet balance, and shipping preferences.</p>
+        
+        <!-- Grid of Amazon-style tiles -->
+        <div class="account-tiles-grid">
+          <a href="#/orders" class="account-tile">
+            <div class="tile-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <div class="tile-text">
+              <h3>Your Orders</h3>
+              <p>Track, return, or buy items again.</p>
+            </div>
+          </a>
+
+          <a href="#/wishlist" class="account-tile">
+            <div class="tile-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <div class="tile-text">
+              <h3>Your Wish List</h3>
+              <p>View, edit, or add items to cart.</p>
+            </div>
+          </a>
+
+          <a href="#/wallet" class="account-tile">
+            <div class="tile-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="tile-text">
+              <h3>Payment & Wallet</h3>
+              <p>Redeem gift cards, load funds, or view history.</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="account-settings-row" style="grid-template-columns: 1fr;">
+          <!-- Multiple Saved Addresses card -->
+          <div class="account-settings-card">
+            <h3>Your Addresses</h3>
+            <p style="font-size:12px; color:var(--color-text-muted); margin-bottom:16px;">Manage your saved shipping addresses for faster checkouts.</p>
+            
+            <!-- List of saved addresses -->
+            <div id="account-saved-addresses-list" style="margin-bottom:24px; display:flex; flex-direction:column; gap:12px;">
+              <!-- Populated dynamically by JS -->
+            </div>
+
+            <!-- Add new address form block -->
+            <div style="border-top:1px solid var(--color-border); padding-top:20px; margin-top:20px;">
+              <h4 style="font-family:var(--font-heading); font-size:20px; color:var(--color-primary); margin-bottom:12px;">Add a New Address</h4>
+              
+              <div class="form-group" style="margin-bottom:10px;">
+                <label for="acc-address-label">Address Type (e.g. Home, Work)</label>
+                <select id="acc-address-label" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--color-border); font-family:var(--font-body); font-size:13px;">
+                  <option value="Home">Home</option>
+                  <option value="Work">Work</option>
+                  <option value="School">School</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="acc-address-line1">Address Line 1</label>
+                <input type="text" id="acc-address-line1" placeholder="Street Address, P.O. Box">
+              </div>
+              
+              <div class="form-row" style="display:flex; gap:12px; margin-top:12px;">
+                <div class="form-group" style="flex:1;">
+                  <label for="acc-address-city">City</label>
+                  <input type="text" id="acc-address-city">
+                </div>
+                <div class="form-group" style="flex:1;">
+                  <label for="acc-address-state">State</label>
+                  <input type="text" id="acc-address-state">
+                </div>
+                <div class="form-group" style="flex:1;">
+                  <label for="acc-address-pincode">Pincode</label>
+                  <input type="text" id="acc-address-pincode">
+                </div>
+              </div>
+              
+              <button onclick="addAccountAddress()" class="btn-primary" style="margin-top:16px; padding: 10px 20px; font-size:13px; border-radius:8px;">Add Address</button>
+              <span id="acc-address-msg" style="font-size:12px; margin-left:12px; color:var(--color-primary); font-weight:600;"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 10. WISHLIST VIEW -->
+    <div id="view-wishlist" class="page-view" style="display:none;">
+      <div class="container wishlist-page-layout">
+        <h2 style="font-family:var(--font-heading); font-size:36px; margin-bottom:8px; color:var(--color-primary);">Your Wish List</h2>
+        <p style="color:var(--color-text-muted); margin-bottom:24px;">Items you've saved to your wish list. You can add them directly to your bag or remove them.</p>
+        
+        <div id="wishlist-items-list" class="wishlist-items-grid">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h2>LUMORA</h2>
+        <p>Aesthetic, organic, and premium apparel and home goods designed for effortless living.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="#/search?sort=newest">New Arrivals</a></li>
+          <li><a href="#/search?q=">Best Sellers</a></li>
+          <li><a href="#/search?category=Accessories">Accessories</a></li>
+          <li><a href="#/search?category=Home %26 Living">Home Goods</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#/">About Us</a></li>
+          <li><a href="#/">Sustainability</a></li>
+          <li><a href="#/">Journal</a></li>
+          <li><a href="#/">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="newsletter-box">
+        <h3>Join the Lumora Circle</h3>
+        <p>Be the first to know about new collection arrivals and exclusive flash sales.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Lumora Circle!'); this.reset();">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Lumora. All rights reserved.</p>
+      <div style="display:flex; gap:24px;">
+        <a href="#/">Privacy Policy</a>
+        <a href="#/">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="api.js?v=2.4"></script>
+  <script src="app.js?v=2.11"></script>
+</body>
+</html>
