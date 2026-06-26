@@ -58,68 +58,7 @@ class Command(BaseCommand):
             cat, _ = Category.objects.get_or_create(name=c, slug=slugify(c))
             cat_objects[c] = cat
 
-        # 4. Create Products
+        # 4. Clear existing products (no hardcoded items will be seeded)
         Product.objects.all().delete()
 
-        products_data = [
-            {
-                'name': 'Sage Green Wrap Dress',
-                'description': 'A beautiful sage green wrap dress for any occasion.',
-                'price': Decimal('75.00'),
-                'discount_price': None,
-                'stock': 10,
-                'rating': 4.5,
-                'category': 'Women',
-                'images': [] # We'll skip images for the basic seed or mock it if needed
-            },
-            {
-                'name': 'Luxe Leather Handbag',
-                'description': 'Premium leather handbag in tan.',
-                'price': Decimal('150.00'),
-                'discount_price': Decimal('129.00'),
-                'stock': 3,
-                'rating': 4.8,
-                'category': 'Accessories'
-            },
-            {
-                'name': 'Organic Cotton T-Shirt',
-                'description': 'Soft, organic cotton men\'s t-shirt.',
-                'price': Decimal('25.00'),
-                'discount_price': None,
-                'stock': 50,
-                'rating': 4.2,
-                'category': 'Men'
-            },
-            {
-                'name': 'Ceramic Vase Set',
-                'description': 'Set of 3 minimalist ceramic vases.',
-                'price': Decimal('45.00'),
-                'discount_price': Decimal('35.00'),
-                'stock': 12,
-                'rating': 4.9,
-                'category': 'Home & Living'
-            },
-            {
-                'name': 'Glow Face Serum',
-                'description': 'Vitamin C face serum for a radiant glow.',
-                'price': Decimal('30.00'),
-                'discount_price': None,
-                'stock': 20,
-                'rating': 4.6,
-                'category': 'Beauty'
-            }
-        ]
-
-        for p in products_data:
-            Product.objects.create(
-                seller=seller,
-                category=cat_objects[p['category']],
-                name=p['name'],
-                description=p['description'],
-                price=p['price'],
-                discount_price=p['discount_price'],
-                stock=p['stock'],
-                rating=p['rating']
-            )
-
-        self.stdout.write(self.style.SUCCESS('Successfully seeded the database.'))
+        self.stdout.write(self.style.SUCCESS('Successfully cleared products and seeded categories.'))

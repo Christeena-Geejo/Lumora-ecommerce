@@ -234,7 +234,7 @@ async function loadState() {
 
       // Filter out products from localProducts that are purely local (e.g. manager added products not in Django API)
       const apiIds = new Set(apiProducts.map(p => p.id));
-      const purelyLocal = localProducts.filter(lp => !apiIds.has(lp.id));
+      const purelyLocal = localProducts.filter(lp => !apiIds.has(lp.id) && lp.status);
 
       products.length = 0;
       products.push(...mapped);
