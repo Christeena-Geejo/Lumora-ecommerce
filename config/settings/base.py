@@ -114,7 +114,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-CELERY_BROKER_URL = env('REDIS_URL', default='redis://localhost:6379/0')
+CELERY_BROKER_URL = env('RABBITMQ_URL', default='amqp://guest:guest@localhost:5672//')
 CELERY_RESULT_BACKEND = env('REDIS_URL', default='redis://localhost:6379/0')
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
