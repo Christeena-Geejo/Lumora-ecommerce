@@ -16,3 +16,4 @@ drf-spectacular
 channels
 channels-redis
 daphne
+pymongo

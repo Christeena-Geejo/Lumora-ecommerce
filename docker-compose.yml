@@ -53,6 +53,14 @@ services:
     depends_on:
       - web
 
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
 volumes:
   postgres_data:
   static_files:
+  mongo_data:
